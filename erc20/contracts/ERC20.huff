@@ -25,7 +25,6 @@
 
 /* Storage Slots */
 #define constant BALANCE_LOCATION = FREE_STORAGE_POINTER()
-#define constant ALLOWANCE_LOCATION = FREE_STORAGE_POINTER()
 #define constant TOTAL_SUPPLY_LOCATION = FREE_STORAGE_POINTER()
 
 /* Constructor */
