@@ -1,5 +1,4 @@
 const { expect } = require("chai");
-const { assert } = require("console");
 const { ethers, waffle } = require("hardhat");
 
 let ownable;
