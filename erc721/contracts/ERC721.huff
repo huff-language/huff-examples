@@ -22,6 +22,7 @@
 #define function isApprovedForAll(address,address) view returns (uint256)
 #define function ownerOf(uint256) view returns (address)
 #define function balanceOf(address) view returns (uint256)
+#define function supportsInterface(bytes4) view returns (bool)
 
 #define event Transfer(address,address,uint256)
 #define event Approval(address,address,uint256)
