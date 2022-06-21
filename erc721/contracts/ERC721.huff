@@ -92,7 +92,35 @@
 }
 
 #define macro SUPPORTS_INTERFACE() = takes (0) returns (0) {
-    0x00 0x00 revert
+    // grab interfaceId
+    0x04 calldataload       // [interfaceId]
+    0xe0 push4 
+    shr
+
+    // check if erc165 interfaceId
+    dup1                    // [interfaceId, interfaceId]
+    0x01ffc9a7 push4        // [0x01ffc9a7, interfaceId, interfaceId]
+    eq                      // [is_erc165, interfaceId]
+    is_interface jumpi
+
+    // check if erc721 interfaceId
+    dup1                    // [interfaceId, interfaceId]
+    0x80ac58cd push4        // [0x80ac58cd, interfaceId, interfaceId]
+    eq                      // [is_erc721, interfaceId]
+    is_interface jumpi
+
+    // check if erc721Metadata interfaceId
+    0x5b5e139f push4        // [0x5b5e139f, interfaceId]
+    eq                      // [is_erc721Metadata]
+    is_interface jumpi
+
+    0x00 mstore         // []
+    0x20 0x00 return    // []
+
+    is_interface:
+        pop                 // []
+        0x01 0x00 mstore    // []
+        0x20 0x00 return    // []
 }
 
 /// >>>>>>>>>>>>>>>>>>>>>  EXTERNAL FUNCTIONS  <<<<<<<<<<<<<<<<<<<<<< ///
