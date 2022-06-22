@@ -349,7 +349,7 @@
     tokenURI:
         TOKEN_URI()             // not implemented yet
     supportsInterface:
-        SUPPORTS_INTERFACE()    // not implemented yet
+        SUPPORTS_INTERFACE()
     isApprovedForAll:
         IS_APPROVED_FOR_ALL()
     ownerOf:
