@@ -100,23 +100,20 @@
 
     // check if erc165 interfaceId
     dup1                    // [interfaceId, interfaceId]
-    0x01ffc9a7              // [0x01ffc9a7, interfaceId, interfaceId]
-    eq                      // [is_erc165, interfaceId]
+    0x01ffc9a7 eq           // [is_erc165, interfaceId]
     is_interface jumpi
 
     // check if erc721 interfaceId
     dup1                    // [interfaceId, interfaceId]
-    0x80ac58cd              // [0x80ac58cd, interfaceId, interfaceId]
-    eq                      // [is_erc721, interfaceId]
+    0x80ac58cd eq           // [is_erc721, interfaceId]
     is_interface jumpi
 
     // check if erc721Metadata interfaceId
-    0x5b5e139f              // [0x5b5e139f, interfaceId]
-    eq                      // [is_erc721Metadata]
+    0x5b5e139f eq           // [is_erc721Metadata]
     is_interface jumpi
 
-    0x00 mstore         // []
-    0x20 0x00 return    // []
+    0x00 mstore             // []
+    0x20 0x00 return        // []
 
     is_interface:
         pop                 // []
