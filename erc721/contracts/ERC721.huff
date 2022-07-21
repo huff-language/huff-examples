@@ -22,6 +22,7 @@
 #define function isApprovedForAll(address,address) view returns (uint256)
 #define function ownerOf(uint256) view returns (address)
 #define function balanceOf(address) view returns (uint256)
+#define function supportsInterface(bytes4) view returns (bool)
 
 #define event Transfer(address,address,uint256)
 #define event Approval(address,address,uint256)
@@ -38,6 +39,9 @@
 #define constant OWNER_LOCATION = FREE_STORAGE_POINTER() // ownerOf
 #define constant BALANCE_LOCATION = FREE_STORAGE_POINTER() // balanceOf
 #define constant SINGLE_APPROVAL_LOCATION = FREE_STORAGE_POINTER() // getApproved
+#define constant IS_ERC165 = 0x01ffc9a7
+#define constant IS_ERC721 = 0x80ac58cd
+#define constant IS_ERC721_METADATA = 0x5b5e139f
 
 /* Constructor */
 
@@ -92,7 +96,32 @@
 }
 
 #define macro SUPPORTS_INTERFACE() = takes (0) returns (0) {
-    0x00 0x00 revert
+    // grab interfaceId
+    0x04 calldataload       // [interfaceId]
+    0xe0 
+    shr
+
+    // check if erc165 interfaceId
+    dup1                        // [interfaceId, interfaceId]
+    [IS_ERC165] eq              // [is_erc165, interfaceId]
+    is_interface jumpi
+
+    // check if erc721 interfaceId
+    dup1                        // [interfaceId, interfaceId]
+    [IS_ERC721] eq              // [is_erc721, interfaceId]
+    is_interface jumpi
+
+    // check if erc721Metadata interfaceId
+    [IS_ERC721_METADATA] eq     // [is_erc721Metadata]
+    is_interface jumpi
+
+    0x00 0x00 mstore                 // []
+    0x20 0x00 return            // []
+
+    is_interface:
+        pop                     // []
+        0x01 0x00 mstore        // []
+        0x20 0x00 return        // []
 }
 
 /// >>>>>>>>>>>>>>>>>>>>>  EXTERNAL FUNCTIONS  <<<<<<<<<<<<<<<<<<<<<< ///
@@ -320,7 +349,7 @@
     tokenURI:
         TOKEN_URI()             // not implemented yet
     supportsInterface:
-        SUPPORTS_INTERFACE()    // not implemented yet
+        SUPPORTS_INTERFACE()
     isApprovedForAll:
         IS_APPROVED_FOR_ALL()
     ownerOf:
