@@ -115,7 +115,7 @@
     [IS_ERC721_METADATA] eq     // [is_erc721Metadata]
     is_interface jumpi
 
-    0x00 mstore                 // []
+    0x00 0x00 mstore                 // []
     0x20 0x00 return            // []
 
     is_interface:
