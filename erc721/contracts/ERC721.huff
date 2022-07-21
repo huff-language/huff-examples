@@ -39,6 +39,9 @@
 #define constant OWNER_LOCATION = FREE_STORAGE_POINTER() // ownerOf
 #define constant BALANCE_LOCATION = FREE_STORAGE_POINTER() // balanceOf
 #define constant SINGLE_APPROVAL_LOCATION = FREE_STORAGE_POINTER() // getApproved
+#define constant IS_ERC165 = 0x01ffc9a7
+#define constant IS_ERC721 = 0x80ac58cd
+#define constant IS_ERC721_METADATA = 0x5b5e139f
 
 /* Constructor */
 
@@ -99,26 +102,26 @@
     shr
 
     // check if erc165 interfaceId
-    dup1                    // [interfaceId, interfaceId]
-    0x01ffc9a7 eq           // [is_erc165, interfaceId]
+    dup1                        // [interfaceId, interfaceId]
+    [IS_ERC165] eq              // [is_erc165, interfaceId]
     is_interface jumpi
 
     // check if erc721 interfaceId
-    dup1                    // [interfaceId, interfaceId]
-    0x80ac58cd eq           // [is_erc721, interfaceId]
+    dup1                        // [interfaceId, interfaceId]
+    [IS_ERC721] eq              // [is_erc721, interfaceId]
     is_interface jumpi
 
     // check if erc721Metadata interfaceId
-    0x5b5e139f eq           // [is_erc721Metadata]
+    [IS_ERC721_METADATA] eq     // [is_erc721Metadata]
     is_interface jumpi
 
-    0x00 mstore             // []
-    0x20 0x00 return        // []
+    0x00 mstore                 // []
+    0x20 0x00 return            // []
 
     is_interface:
-        pop                 // []
-        0x01 0x00 mstore    // []
-        0x20 0x00 return    // []
+        pop                     // []
+        0x01 0x00 mstore        // []
+        0x20 0x00 return        // []
 }
 
 /// >>>>>>>>>>>>>>>>>>>>>  EXTERNAL FUNCTIONS  <<<<<<<<<<<<<<<<<<<<<< ///
