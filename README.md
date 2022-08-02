@@ -37,6 +37,14 @@ This is how to create the contract bytecode to output _Hello, World!_ in Huff.
     6100168061000d6000396000f36c48656c6c6f2c20776f726c6421600052601a6000f3
     ```
 
+3. To test contracts, Huff Language contributors created [foundry-huff](https://github.com/huff-language/foundry-huff), a foundry library written in solidity, to allow you to test your Huff contracts in solidity. Simply install dependencies and run tests with:
+
+    ```shell
+    forge install
+    forge test
+    ```
+
+    _NOTE: This requires [Foundry](https://foundry.sh) to be installed. You can install it with `curl -L https://foundry.paradigm.xyz | bash`._
 
 ## More help
 
