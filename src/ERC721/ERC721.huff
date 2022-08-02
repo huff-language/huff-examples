@@ -3,10 +3,10 @@
 /// @notice An exemplary ERC721 token contract written in Huff.
 
 /* Imports */
-#include "./contracts/utils/Ownable.huff"
-#include "./contracts/utils/Address.huff"
-#include "./contracts/utils/Utils.huff"
-#include "./contracts/utils/HashMap.huff"
+#include "./utils/Ownable.huff"
+#include "./utils/Address.huff"
+#include "./utils/Utils.huff"
+#include "./utils/HashMap.huff"
 
 /* Interface */
 #define function mint(address,uint256) nonpayable returns ()
@@ -15,14 +15,13 @@
 #define function symbol() nonpayable returns (string)
 #define function tokenURI(uint256) nonpayable returns (string)
 
-#define function mint(address,uint256) nonpayable returns ()
 #define function transfer(address,uint256) nonpayable returns ()
 #define function transferFrom(address,address,uint256) nonpayable returns ()
 #define function approve(address,uint256) nonpayable returns ()
 #define function setApprovalForAll(address,bool) nonpayable returns ()
 
 #define function getApproved(uint256) view returns (address)
-#define function isApprovedForAll(address,address) view returns (uint256)
+#define function isApprovedForAll(address,address) view returns (bool)
 #define function ownerOf(uint256) view returns (address)
 #define function balanceOf(address) view returns (uint256)
 
@@ -65,6 +64,7 @@
     0x24 calldataload                               // [to]
     0x04 calldataload                               // [from, to]
     LOAD_ELEMENT_FROM_KEYS(0x00)                    // [value]
+    iszero iszero                                   // [approved]
     0x00 mstore                                     // []
     0x20 0x00 return                                // []
 }
@@ -230,7 +230,7 @@
     TRANSFER_GIVE_TO()                              // [from, to, tokenId]
 
     // Emit the transfer event.
-    __EVENT_HASH(Transfer)                          // [sig,from, to, tokenId]
+    __EVENT_HASH(Transfer)                          // [sig, from, to, tokenId]
     0x20 0x00                                       // [0, 0, sig, from, to, tokenId]
     log4                                            // []
 
@@ -282,20 +282,20 @@
 #define macro MAIN() = takes(0) returns (0) {
     // Identify which function is being called.
     0x00 calldataload 0xE0 shr
-    dup1 0xa9059cbb eq transferFrom jumpi
-    dup1 0x42842e0e eq safeTransferFrom jumpi
-    dup1 0xb88d4fde eq safeTransferFromWithData jumpi
-    dup1 0x095ea7b3 eq approve jumpi
-    dup1 0xa22cb465 eq setApprovalForAll jumpi
-    dup1 0x081812fc eq getApproved jumpi
-    dup1 0x40c10f19 eq mint jumpi
-    dup1 0x70a08231 eq balanceOf jumpi
-    dup1 0x6352211e eq ownerOf jumpi
-    dup1 0x06fdde03 eq name jumpi
-    dup1 0x95d89b41 eq symbol jumpi
-    dup1 0xc87b56dd eq tokenURI jumpi
-    dup1 0x01ffc9a7 eq supportsInterface jumpi
-    dup1 0xe985e9c5 eq isApprovedForAll jumpi
+    dup1 __FUNC_SIG(transferFrom) eq transferFrom jumpi
+    dup1 __FUNC_SIG(safeTransferFrom) eq safeTransferFrom jumpi
+    dup1 __FUNC_SIG(safeTransferFromWithData) eq safeTransferFromWithData jumpi
+    dup1 __FUNC_SIG(approve) eq approve jumpi
+    dup1 __FUNC_SIG(setApprovalForAll) eq setApprovalForAll jumpi
+    dup1 __FUNC_SIG(getApproved) eq getApproved jumpi
+    dup1 __FUNC_SIG(mint) eq mint jumpi
+    dup1 __FUNC_SIG(balanceOf) eq balanceOf jumpi
+    dup1 __FUNC_SIG(ownerOf) eq ownerOf jumpi
+    dup1 __FUNC_SIG(name) eq name jumpi
+    dup1 __FUNC_SIG(symbol) eq symbol jumpi
+    dup1 __FUNC_SIG(tokenURI) eq tokenURI jumpi
+    dup1 __FUNC_SIG(supportsInterface) eq supportsInterface jumpi
+    dup1 __FUNC_SIG(isApprovedForAll) eq isApprovedForAll jumpi
 
     // Prvent Calling functions with an unmatched function signature
     0x00 0x00 revert

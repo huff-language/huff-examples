@@ -3,10 +3,10 @@
 /// @notice An exemplary ERC20 token contract written in Huff.
 
 /* Imports */
-#include "./contracts/utils/Ownable.huff"
-#include "./contracts/utils/Address.huff"
-#include "./contracts/utils/Utils.huff"
-#include "./contracts/utils/HashMap.huff"
+#include "./utils/Ownable.huff"
+#include "./utils/Address.huff"
+#include "./utils/Utils.huff"
+#include "./utils/HashMap.huff"
 
 /* Interface */
 #define function mint(address,uint256) nonpayable returns ()
@@ -32,7 +32,6 @@
 #define constant TOTAL_SUPPLY_LOCATION = FREE_STORAGE_POINTER()
 
 /* Constructor */
-
 #define macro CONSTRUCTOR() = takes(0) returns (0) {
     // Set msg.sender as the owner of the contract.
     OWNABLE_CONSTRUCTOR()
