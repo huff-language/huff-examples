@@ -1,3 +1,6 @@
+/// @title ERC20
+/// @author Huff Language <https://github.com/huff-language>
+/// @notice An exemplary ERC20 token contract written in Huff.
 
 /* Imports */
 #include "./contracts/utils/Ownable.huff"

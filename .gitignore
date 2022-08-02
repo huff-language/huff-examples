@@ -1,4 +1,22 @@
-node_modules
-.nyc_output
-huff_modules
-tests
+# Any Node Modules
+node_modules/
+
+# Environment Variables
+.env
+.env.prod
+
+# Cached Build
+cache/
+out/
+
+# Vscode
+.vscode/
+
+# huffc artifacts
+artifacts
+
+# Ignore flattened files
+flattened.txt
+
+# Ignore Broadcasts
+broadcast

@@ -1,36 +1,20 @@
-# The Huff Programming Language
+# huff-examples • [![ci](https://github.com/huff-language/huff-examples/actions/workflows/ci.yaml/badge.svg)](https://github.com/huff-language/huff-examples/actions/workflows/ci.yaml) ![license](https://img.shields.io/github/license/huff-language/huff-examples.svg) ![solidity](https://img.shields.io/badge/solidity-^0.8.15-lightgrey)
 
-![Huff logo.](logo.png)
+A Collection of Verbosely Document Huff Contracts.
 
-Huff is a low-level programming language designed for developing highly optimized smart contracts that run on the Ethereum Virtual Machine (EVM). Huff does not hide the inner workings of the EVM. Instead, Huff exposes its programming stack to the developer for manual manipulation.
 
-Rather than having functions, Huff has macros - individual blocks of bytecode that can be rigorously tested and evaluated using the Huff runtime testing suite.
+### Usage
 
-Initially developed by the Aztec Protocol team, Huff was created to write [Weierstrudel](https://github.com/aztecprotocol/weierstrudel/tree/master/huff_modules). Weierstrudel is an on-chain elliptical curve arithmetic library that requires incredibly optimized code that neither [Solidity](https://docs.soliditylang.org/en/v0.8.14/) nor [Yul](https://docs.soliditylang.org/en/v0.8.9/yul.html) could provide.
+Make sure you've installed the Huff Compiler as outlined in the [Huff Docs](https://docs.huff.sh/get-started/installing/).
 
-While EVM experts can use Huff to write highly-efficient smart contracts for use in production, it can also serve as a way for beginners to learn more about the EVM.
+TL;DR: `curl -L get.huff.sh | bash && huffup`
 
-## Example
+To verify your installation, run `huffc --help`. This should print a list of available commands for the huff compiler cli.
 
-### Prerequisities
-
-Make sure you have the following programs installed:
-
-- [yarn](https://www.npmjs.com/package/yarn)
-- [Typescript](https://www.npmjs.com/package/typescript)
-- [ts-node](https://www.npmjs.com/package/ts-node#overview)
 
 ### Steps
 
 This is how to create the contract bytecode to output _Hello, World!_ in Huff.
-
-1. Install Huff globally:
-
-    ```shell
-    yarn global add huffc
-    ```
-
-**Note:** You may need to add yarn to your system's path to access globally installed packages. See [the yarn docs on global](https://classic.yarnpkg.com/en/docs/cli/global) for more details.
 
 1. Create a file called `hello-world.huff` and enter the following content:
 
@@ -50,25 +34,10 @@ This is how to create the contract bytecode to output _Hello, World!_ in Huff.
     This will output something like:
 
     ```plaintext
-    6100168061000d6000396000f36c48656c6c6f2c20776f726c6421600052601a6000f3 
+    6100168061000d6000396000f36c48656c6c6f2c20776f726c6421600052601a6000f3
     ```
+
 
 ## More help
 
-Run `huffc --help` to view a full list of arguments:
-
-```shell
-huffc --help
-
-> Usage: huffc [options]
-> 
-> Options:
->   -V, --version                    output the version number
->   -V, --version                    Show the version and exit
->   --base-path <path>               The base path to the contracts (default: "./")
->   --output-directory <output-dir>  The output directory (default: "./")
->   --bytecode                       Generate and log bytecode (default: false)
->   -o, output                       The output file
->   -p, --paste                      Paste the output to the terminal
->   -h, --help                       display help for command
-```
+Run `huffc --help` to view a full list of arguments.
