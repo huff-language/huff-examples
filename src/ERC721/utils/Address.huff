@@ -13,6 +13,11 @@
     0x00    // [0, 0, 0, 0, amount, address]
     dup5    // [amount, 0, 0, 0, 0, amount, address]
     dup7    // [address, amount, 0, 0, 0, 0, amount]
+    gas     // [gas, address, amount, 0, 0, 0, 0, amount]
+    call    // [success, amount]
+
+    swap1   // [amount ,success]
+    pop     // [success]
 }
 
 #define macro MASK_ADDRESS() = takes(1) returns (1) {
