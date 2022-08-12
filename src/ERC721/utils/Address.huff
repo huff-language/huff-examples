@@ -12,11 +12,13 @@
     0x00    // [0, 0, 0, amount, address]
     0x00    // [0, 0, 0, 0, amount, address]
     dup5    // [amount, 0, 0, 0, 0, amount, address]
-    dup7    // [address, amount, 0, 0, 0, 0, amount]
-    gas     // [gas, address, amount, 0, 0, 0, 0, amount]
-    call    // [success, amount]
+    dup7    // [address, amount, 0, 0, 0, 0, amount, address]
+    gas     // [gas, address, amount, 0, 0, 0, 0, amount, address]
+    call    // [success, amount, address]
 
-    swap1   // [amount ,success]
+    swap1   // [amount, success, address]
+    pop     // [success, address]
+    swap1   // [address, success]
     pop     // [success]
 }
 
