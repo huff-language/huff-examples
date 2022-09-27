@@ -6,6 +6,6 @@ import {HuffDeployer} from "foundry-huff/HuffDeployer.sol";
 
 contract DeployERC721Script is Script {
     function run() public returns (address deployed) {
-        deployed = HuffDeployer.deploy("ERC721/ERC721");
+        deployed = HuffDeployer.deploy("ERC721");
     }
 }
