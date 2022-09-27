@@ -8,4 +8,6 @@ fuzz_runs = 1_000
 remappings = [
     "forge-std=lib/forge-std/src/",
     "foundry-huff=lib/foundry-huff/src/",
+    "huffmate=lib/huffmate/src/",
+    "solmate=lib/solmate/src/",
 ]
