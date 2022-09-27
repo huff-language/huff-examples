@@ -1,4 +1,4 @@
-<img align="right" width="150" height="150" top="100" src="./assets/logo.png">
+<img align="right" width="150" height="150" top="100" src="./assets/tests.png">
 
 # huff-examples • [![ci](https://github.com/huff-language/huff-examples/actions/workflows/ci.yaml/badge.svg)](https://github.com/huff-language/huff-examples/actions/workflows/ci.yaml) ![license](https://img.shields.io/github/license/huff-language/huff-examples.svg) ![solidity](https://img.shields.io/badge/solidity-^0.8.15-lightgrey)
 
@@ -27,15 +27,15 @@ To simplify the developer experience, Huff Language contributors created [foundr
 
 To install dependencies, run:
 
-    ```shell
-    forge install
-    ```
+```sh
+forge install
+```
 
 To run tests, run:
 
-    ```shell
-    forge test
-    ```
+```sh
+forge test
+```
 
 You can also update dependencies with `forge update` and format with `forge lint`.
 
