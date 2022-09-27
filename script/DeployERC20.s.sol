@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.15;
 
-import { Script } from "forge-std/Script.sol";
-import { HuffDeployer } from "foundry-huff/HuffDeployer.sol";
+import {Script} from "forge-std/Script.sol";
+import {HuffDeployer} from "foundry-huff/HuffDeployer.sol";
 
 contract DeployERC20Script is Script {
     function run() public returns (address deployed) {

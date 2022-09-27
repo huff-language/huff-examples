@@ -5,7 +5,7 @@
 /// @notice Built with Huffmate (https://github.com/pentagonxyz/huffmate/blob/main/src/tokens/ERC20.huff)
 
 // Imports
-#include "huffmate/src/tokens/ERC20.huff"
+#include "huffmate/tokens/ERC20.huff"
 
 // Additional Functions
 #define function mint(address, uint256) nonpayable returns ()
