@@ -10,9 +10,6 @@
 #define function mint(address, uint256) payable returns ()
 #define function burn(uint256) nonpayable returns ()
 
-#define function mint(address, uint256) payable returns ()
-#define function burn(uint256) nonpayable returns ()
-
 #define function safeMint(address to, uint256 tokenId, bytes memory data) payable returns ()
 #define function safeMint(address to, uint256 tokenId) payable returns ()
 
